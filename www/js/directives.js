@@ -63,7 +63,7 @@ angular.module('starter.directives', [])
   }
  })
 
-.directive('currentWeather', function($timeout, $rootScope, Settings) {
+.directive('currentWeather', function() {
   return {
     restrict: 'E',
     replace: true,
@@ -72,59 +72,35 @@ angular.module('starter.directives', [])
     compile: function(element, attr) {
       return function($scope, $element, $attr) {
 
-        $rootScope.$on('settings.changed', function(settings) {
-          var units = Settings.get('tempUnits');
-
-          if($scope.forecast) {
-
-            var forecast = $scope.forecast;
-            var current = $scope.current;
-
-            if(units == 'f') {
-              $scope.highTemp = forecast.forecastday[0].high.fahrenheit;
-              $scope.lowTemp = forecast.forecastday[0].low.fahrenheit;
-              $scope.currentTemp = Math.floor(current.temp_f);
-            } else {
-              $scope.highTemp = forecast.forecastday[0].high.celsius;
-              $scope.lowTemp = forecast.forecastday[0].low.celsius;
-              $scope.currentTemp = Math.floor(current.temp_c);
-            }
-          }
-        });
-
+        var current = $scope.current;
         $scope.$watch('current', function(current) {
-          var units = Settings.get('tempUnits');
 
-          if(current) {
-            if(units == 'f') {
-              $scope.currentTemp = Math.floor(current.currently.temperature);
-            } else {
-              $scope.currentTemp = Math.floor(current.currently.temperature);
-            }
-            if(units == 'f') {
-              $scope.highTemp = Math.floor(current.daily.data[0].temperatureMax);
-              $scope.lowTemp = Math.floor(current.daily.data[0].temperatureMin);
-            } else {
-              $scope.highTemp = Math.floor(current.daily.data[0].temperatureMax);
-              $scope.lowTemp = Math.floor(current.daily.data[0].temperatureMin);
-            }
-          }
-        });
+           console.log("current "+current);
+         if(current) {
+           $scope.highTemp = Math.floor(current.main.temp_max - 273.15);
+           $scope.lowTemp = Math.floor(current.main.temp_min - 273.15);
+           $scope.currentTemp = Math.floor(current.main.temp - 273.15);
+         }
+       });
+
+
+
+
 
       // Delay so we are in the DOM and can calculate sizes
-      $timeout(function() {
-        var windowHeight = window.innerHeight;
-        var thisHeight = $element[0].offsetHeight;
-        var headerHeight = document.querySelector('#header').offsetHeight;
-        $element[0].style.paddingTop = (windowHeight - (thisHeight)) + 'px';
-        angular.element(document.querySelector('.content')).css('-webkit-overflow-scrolling', 'auto');
-        $timeout(function() {
-          angular.element(document.querySelector('.content')).css('-webkit-overflow-scrolling', 'touch');
-        }, 50);
-      });
-      }
+      // $timeout(function() {
+      //   var windowHeight = window.innerHeight;
+      //   var thisHeight = $element[0].offsetHeight;
+      //   var headerHeight = document.querySelector('#header').offsetHeight;
+      //   $element[0].style.paddingTop = (windowHeight - (thisHeight)) + 'px';
+      //   angular.element(document.querySelector('.content')).css('-webkit-overflow-scrolling', 'auto');
+      //   $timeout(function() {
+      //     angular.element(document.querySelector('.content')).css('-webkit-overflow-scrolling', 'touch');
+      //   }, 50);
+      // });
+    };
     }
-  }
+  };
 })
 
 .directive('forecast', function($timeout) {

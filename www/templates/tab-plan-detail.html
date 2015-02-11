@@ -3,16 +3,10 @@
   <ion-content class="padding home-wrapper">
     <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
 
-    <div class="card card-bg padding ">
+    <div class="card card-bg padding text-backdrop">
       <div class="card-input">
-        <p class="weather-title">Weather</p>
-        <div class="spacer-lg"></div><br>
         <div class="weather-content">
-          <p class="weather-description"><weather-icon icon="current.weather[0].description.icon" id="current-icon"></weather-icon> {{current.weather[0].description}}</p>
-          <br>
-        <p class="weather-deg">  {{current.main.temp- 273.15 | number:1}}&deg; C</p>
-          <br>
-          
+          <current-weather></current-weather>
           <div id="forecast" class="weather-box">
   <h4 class="title">Forecast</h4>
             <ion-scroll direction="x" id="forecast-scroll">
@@ -26,7 +20,7 @@
                  </ion-scroll>
           <div class="row" ng-repeat="day in dailyForecast.list">
             <div class="col"><span ng-bind="day.dt * 1000 | date:'EEEE'"></span></div>
-            <div class="col"><weather-icon icon="day.weather.icon"></weather-icon></div>
+            <div class="col"><weather-icon icon="day.weather[0].icon"></weather-icon></div>
             <div class="col">
               <span class="temp-high">{{day.temp.max | tempInt}}&deg;</span>
               <span class="temp-low">{{day.temp.min | tempInt}}&deg;</span>
@@ -38,7 +32,7 @@
     </div>
   </div> -->
 </div>
-          
+
            </div>
       </div>
     </div>

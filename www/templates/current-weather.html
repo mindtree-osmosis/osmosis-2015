@@ -1,0 +1,8 @@
+<div id="current-weather">
+  <h5><weather-icon icon="current.weather[0].icon" id="current-icon"></weather-icon> {{current.weather[0].description}}</h5>
+  <h5>
+    <span id="temp-hi"><i class="icon ion-arrow-up-c"></i> <span ng-bind="highTemp"></span>&deg; C</span>
+    <span id="temp-lo"><i class="icon ion-arrow-down-c"></i> <span ng-bind="lowTemp"></span>&deg; C</span>
+  </h5>
+  <h1 class="current-temp"><span ng-bind="currentTemp"></span>&deg;</h1>
+</div>

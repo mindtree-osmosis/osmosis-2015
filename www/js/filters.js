@@ -22,13 +22,13 @@ angular.module('starter.filters', ['starter.services'])
 .filter('tempInt', function() {
   return function(input) {
     return parseInt(input - 273.15);
-  }
+  };
 })
 
 .filter('getHour', function() {
   return function(input) {
-    var fcDate = new Date(input);
-    var hours = fcDate.getHours();
+    var fcDate = input.split(" ")[1];
+    var hours = parseInt(fcDate.split(":")[0]);
     if(hours < 12){
       hours = hours + " AM";
     }else if (hours === 12){
@@ -37,6 +37,5 @@ angular.module('starter.filters', ['starter.services'])
       hours = (hours -12) + " PM";
     }
     return hours;
-  }
-})
-;
+  };
+});
