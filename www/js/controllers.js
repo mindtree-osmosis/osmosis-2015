@@ -13,11 +13,19 @@ angular.module('starter.controllers', ['restangular','uiGmapgoogle-maps'])
   data = JSON.parse(PlanService.getSearchData());
   $scope.lat = data.location.geometry.location.k;
   $scope.long = data.location.geometry.location.D;
-  $scope.weatherData = {};
+  $scope.current = {};
+  $scope.forecast = {};
+  $scope.dailyForecast = {};
   $scope.map = { center: { latitude: $scope.lat, longitude: $scope.long  }, zoom: 9 };
    WeatherService.getWeatherByLatnLong($scope.lat,$scope.long).then(function(weatherData){
-     $scope.weatherData = weatherData;
-     console.log(weatherData.weather[0].description);
+    $scope.current = weatherData;
+   });
+  WeatherService.getForecastByLatnLong($scope.lat,$scope.long).then(function(weatherData){
+    $scope.forecast = weatherData;
+   
+   });
+  WeatherService.getDailyForecastByLatnLong($scope.lat,$scope.long).then(function(weatherData){
+    $scope.dailyForecast = weatherData; 
    });
 
 })

@@ -68,10 +68,36 @@ angular.module('starter.services', ['restangular'])
 
 .factory('WeatherService',function(Restangular,$http,$q){
     console.log('in CityList service');
-    var baseDestination;
+    var weatherInfo;
    return{
+     getForecastByLatnLong: function(lat,long) {
+                weatherInfo =  $http({
+                        method: "get",
+                        url: "http://api.openweathermap.org/data/2.5/forecast",
+                        params: {
+                            lat: lat,
+                            lon: long
+                        }
+                    });
+
+                    return( weatherInfo.then( handleSuccess, handleError ) );
+            },
+     getDailyForecastByLatnLong: function(lat,long) {
+                weatherInfo =  $http({
+                        method: "get",
+                        url: "http://api.openweathermap.org/data/2.5/forecast/daily",
+                        params: {
+                            lat: lat,
+                            lon: long,
+                          cnt: 10,
+                          mode:'json'
+                        }
+                    });
+
+                    return( weatherInfo.then( handleSuccess, handleError ) );
+            },
         getWeatherByLatnLong: function(lat,long) {
-                baseDestination =  $http({
+                weatherInfo =  $http({
                         method: "get",
                         url: "http://api.openweathermap.org/data/2.5/weather",
                         params: {
@@ -80,10 +106,10 @@ angular.module('starter.services', ['restangular'])
                         }
                     });
 
-                    return( baseDestination.then( handleSuccess, handleError ) );
+                    return( weatherInfo.then( handleSuccess, handleError ) );
             },
        getWeatherByCityName: function(cityname){
-         baseDestination =  $http({
+         weatherInfo =  $http({
                         method: "get",
                         url: "http://api.openweathermap.org/data/2.5/weather",
                         params: {
@@ -91,7 +117,7 @@ angular.module('starter.services', ['restangular'])
                         }
                     });
 
-                    return( baseDestination.then( handleSuccess, handleError ) );
+                    return( weatherInfo.then( handleSuccess, handleError ) );
        },
 
     }
