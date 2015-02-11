@@ -1,0 +1,31 @@
+<ion-view view-title="Plan Trip">
+
+<ion-content>
+<form novalidate name="plantrip" ng-submit="searchLocation(search)">
+<div class="card-bg padding ">
+  <div class="card-input card-wrapper">
+    <h3 class="card-title">Plan a perfect vacation</h3>
+    <label class=" item item-input ">
+      <i class="icon ion-search placeholder-icon"></i>
+      <ion-google-place placeholder="Enter a Location" ng-model="search.location" ng-change="changeLocation(location)"/>
+    </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <span class="input-label">From</span>
+    <input type="date" class="item-input" ng-model="search.from">
+  </div>
+  <div class="col">
+    <span class="input-label">To</span>
+    <input type="date" class="item-input" ng-model="search.to">
+  </div>
+</div>
+
+      <div class="padding">
+        <button type="submit" class="button button-full button-assertive">Plan Now!</button>
+      </div>
+</form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,35 @@
+<ion-view view-title="Plan Detail">
+
+  <ion-content class="padding home-wrapper">
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+
+    <div class="card card-bg padding ">
+      <div class="card-input">
+        <p class="weather-title">Weather</p>
+        <div class="spacer-lg"></div><br>
+        <div class="weather-content">
+          <p class="weather-description"><i class="icon ion-ios7-cloud"></i> {{weatherData.weather[0].description}}</p>
+          <br>
+        <p class="weather-deg">  {{weatherData.main.temp- 273.15 | number:1}}&deg; C</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-divider">Health</div>
+      <div class="item item-body">
+        <div>
+          You ate an apple today!
+        </div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Upcoming</div>
+      <div class="item item-body">
+        <div>
+          You have <b>29</b> meetings on your calendar tomorrow.
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
