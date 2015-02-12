@@ -82,22 +82,28 @@ angular.module('starter.directives', [])
            $scope.currentTemp = Math.floor(current.main.temp - 273.15);
          }
        });
+    };
+    }
+  };
+})
 
+.directive('nearBy', function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: 'templates/nearby-places.html',
+    scope: true,
+    compile: function(element, attr) {
+      return function($scope, $element, $attr) {
 
-
-
-
-      // Delay so we are in the DOM and can calculate sizes
-      // $timeout(function() {
-      //   var windowHeight = window.innerHeight;
-      //   var thisHeight = $element[0].offsetHeight;
-      //   var headerHeight = document.querySelector('#header').offsetHeight;
-      //   $element[0].style.paddingTop = (windowHeight - (thisHeight)) + 'px';
-      //   angular.element(document.querySelector('.content')).css('-webkit-overflow-scrolling', 'auto');
-      //   $timeout(function() {
-      //     angular.element(document.querySelector('.content')).css('-webkit-overflow-scrolling', 'touch');
-      //   }, 50);
-      // });
+        var nearByLocationsList = $scope.nearByLocationsList;
+        $scope.$watch('nearByLocationsList', function(nearByLocationsList) {
+//          if(nearByLocationsList) {
+//            $scope.highTemp = Math.floor(current.main.temp_max - 273.15);
+//            $scope.lowTemp = Math.floor(current.main.temp_min - 273.15);
+//            $scope.currentTemp = Math.floor(current.main.temp - 273.15);
+//          }
+       });
     };
     }
   };

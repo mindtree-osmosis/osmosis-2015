@@ -1,14 +1,17 @@
 <ion-view view-title="Plan Detail">
 
   <ion-content class="padding home-wrapper card-bg-blur">
-    <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+     <ui-gmap-markers models="randomMarkers" coords="'self'" icon="'icon'">
+        </ui-gmap-markers>
+    </ui-gmap-google-map>
 
     <div class="text-backdrop">
       <div class="card-input">
         <div class="weather-content">
           <current-weather></current-weather>
           <div id="forecast" class="weather-box">
-  <h4 class="title">Forecast</h4>
+            <h4 class="title">Forecast</h4>
             <ion-scroll direction="x" id="forecast-scroll">
                     <div id="hourly-forecast">
                       <div class="hourly-hour" ng-repeat="hour in forecast.list | limitTo : 12">
@@ -24,34 +27,27 @@
             <div class="col">
               <span class="temp-high">{{day.temp.max | tempInt}}&deg;</span>
               <span class="temp-low">{{day.temp.min | tempInt}}&deg;</span>
+            </div>
           </div>
-        </div>
 <!--   <div class="clearfix">
     <div class="credit">
       Powered by <a href="http://forecast.io" target="_blank">forecast.io</a>
     </div>
   </div> -->
-</div>
-
+</div><!-- end of forecast -->
+              <div id="nearby" class="weather-box">
+            <h4 class="title">Places Nearby</h4>
+            <div class="row daily-forecast-text" ng-repeat="location in nearByLocationsList | limitTo:10">
+              <div class="col"><span>{{location.name}}</span></div>
+              <div class="col capitalize"><span>{{location.types[0] | removeUnderscore}}</span></div>
+            </div>
+</div><!-- end of nearby -->
            </div>
       </div>
     </div>
 
-    <div class="list card">
-      <div class="item item-divider">Health</div>
-      <div class="item item-body">
-        <div>
-          You ate an apple today!
-        </div>
+ <div class="padding">
+        <a href="#"  class="button button-full button-assertive">Book Now</a>
       </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Upcoming</div>
-      <div class="item item-body">
-        <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
-        </div>
-      </div>
-    </div>
   </ion-content>
 </ion-view>

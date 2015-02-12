@@ -118,8 +118,49 @@ angular.module('starter.services', ['restangular'])
                     });
 
                     return( weatherInfo.then( handleSuccess, handleError ) );
-       },
+       }
 
+    }
+
+    })
+
+.factory('PlacesService',function(Restangular,$http,$q){
+    console.log('in Places service');
+    var locationInfo;
+  var types ='art_gallery|museum|amusement_park|zoo|aquarium|bowling_alley|casino|park' ;
+  var apiKey = 'AIzaSyA8m0_8rTurwIZlyvrbrWVfxeJLV1tbUQ4';
+  var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
+  var location;
+   return{
+     getNearByLatnLong: function(lat,long) {
+       location = lat+','+long;
+                locationInfo =  $http({
+                        method: "get",
+                        url: url,
+                        params: {
+                            location: location,
+                            type: types,
+                          radius:'10000',
+                             key: apiKey
+                        }
+                    });
+
+                    return( locationInfo.then( handleSuccess, handleError ) );
+            },
+     getFoodByLatnLong: function(lat,long) {
+                locationInfo =  $http({
+                        method: "get",
+                        url: "http://api.openweathermap.org/data/2.5/forecast/daily",
+                        params: {
+                            lat: lat,
+                            lon: long,
+                          cnt: 10,
+                          mode:'json'
+                        }
+                    });
+
+                    return( locationInfo.then( handleSuccess, handleError ) );
+            }
     }
 
     })

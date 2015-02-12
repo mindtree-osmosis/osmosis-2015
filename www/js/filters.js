@@ -25,6 +25,13 @@ angular.module('starter.filters', ['starter.services'])
   };
 })
 
+.filter('removeUnderscore', function() {
+  return function(input) {
+    var type = input.split("_").join(" ");    
+    return type;
+  };
+})
+
 .filter('getHour', function() {
   return function(input) {
     var fcDate = input.split(" ")[1];

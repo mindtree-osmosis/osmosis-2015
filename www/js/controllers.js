@@ -9,13 +9,14 @@ angular.module('starter.controllers', ['restangular','uiGmapgoogle-maps'])
 
 })
 
-.controller('PlanDetailCtrl', function($scope,PlanService,WeatherService) {
+.controller('PlanDetailCtrl', function($scope,PlanService,WeatherService,PlacesService) {
   data = JSON.parse(PlanService.getSearchData());
   $scope.lat = data.location.geometry.location.k;
   $scope.long = data.location.geometry.location.D;
   $scope.current = {};
   $scope.forecast = {};
   $scope.dailyForecast = {};
+  $scope.nearByLocationsList = {};
   $scope.map = { center: { latitude: $scope.lat, longitude: $scope.long  }, zoom: 11 };
    WeatherService.getWeatherByLatnLong($scope.lat,$scope.long).then(function(weatherData){
     $scope.current = weatherData;
@@ -26,6 +27,38 @@ angular.module('starter.controllers', ['restangular','uiGmapgoogle-maps'])
    });
   WeatherService.getDailyForecastByLatnLong($scope.lat,$scope.long).then(function(weatherData){
     $scope.dailyForecast = weatherData;
+   });
+  
+  PlacesService.getNearByLatnLong($scope.lat,$scope.long).then(function(locationsData){
+     $scope.nearByLocationsList = locationsData.results;
+      var createRandomMarker = function(i,loc,idKey) {
+       console.log(loc);
+         if (idKey === null) {
+            idKey = "id";
+         }  
+        var latitude = loc.geometry.location.lat;
+        var longitude = loc.geometry.location.lng;
+        var ret = {
+          latitude: latitude,
+          longitude: longitude,
+          title: loc.name,
+          icon: loc.icon
+        };
+        ret[idKey] = i;
+        return ret;
+      };
+    $scope.randomMarkers = [];
+    // Get the bounds from the map once it's loaded
+    $scope.$watch('nearByLocationsList',function() {
+      var markers = [];
+        for (var i = 0; i < $scope.nearByLocationsList.length; i++) {
+          var location = $scope.nearByLocationsList[i];
+          markers.push(createRandomMarker(i,location))
+        }
+        $scope.randomMarkers = markers;
+      
+    });
+    $scope.$apply();
    });
 
 })
