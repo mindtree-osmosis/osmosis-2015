@@ -1,7 +1,7 @@
 /* Empty. Add your own CSS if you like */
 body{
   font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 300;
+  font-weight: 200;
 }
 .text-backdrop{
   text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
@@ -61,7 +61,7 @@ input.ion-google-place[readonly]{
 
 .weather-title{
   font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 300;
+  font-weight: 200;
   font-size:32px;
   color:#fff;
 }
@@ -124,7 +124,7 @@ input.ion-google-place[readonly]{
 
 h1,h2,h3,h4,h5 {
   color: #fff;
-  font-weight: 300;
+  font-weight: 200;
 }
 
 #main-content {
@@ -305,4 +305,8 @@ h1,h2,h3,h4,h5 {
 }
 #settings-modal .input-label {
   color: #fff;
+}
+
+.daily-forecast-text{
+  font-size:16px;
 }

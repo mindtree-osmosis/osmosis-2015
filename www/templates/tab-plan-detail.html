@@ -18,7 +18,7 @@
                       </div>
                     </div>
                  </ion-scroll>
-          <div class="row" ng-repeat="day in dailyForecast.list">
+          <div class="row daily-forecast-text" ng-repeat="day in dailyForecast.list">
             <div class="col"><span ng-bind="day.dt * 1000 | date:'EEEE'"></span></div>
             <div class="col"><weather-icon icon="day.weather[0].icon"></weather-icon></div>
             <div class="col">
