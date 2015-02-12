@@ -16,16 +16,16 @@ angular.module('starter.controllers', ['restangular','uiGmapgoogle-maps'])
   $scope.current = {};
   $scope.forecast = {};
   $scope.dailyForecast = {};
-  $scope.map = { center: { latitude: $scope.lat, longitude: $scope.long  }, zoom: 9 };
+  $scope.map = { center: { latitude: $scope.lat, longitude: $scope.long  }, zoom: 11 };
    WeatherService.getWeatherByLatnLong($scope.lat,$scope.long).then(function(weatherData){
     $scope.current = weatherData;
    });
   WeatherService.getForecastByLatnLong($scope.lat,$scope.long).then(function(weatherData){
     $scope.forecast = weatherData;
-   
+
    });
   WeatherService.getDailyForecastByLatnLong($scope.lat,$scope.long).then(function(weatherData){
-    $scope.dailyForecast = weatherData; 
+    $scope.dailyForecast = weatherData;
    });
 
 })

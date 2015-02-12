@@ -18,6 +18,10 @@ border: 1px solid #eee;
   background:transparent url('../img/beach.jpg') no-repeat center center;
   background-size: cover;
 }
+.card-bg-blur {
+  background:transparent url('../img/beach-blur.jpg') no-repeat center center;
+  background-size: cover;
+}
 .card-wrapper {
   margin: 80px 0px;
 }
