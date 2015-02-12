@@ -14,7 +14,7 @@
                       <div class="hourly-hour" ng-repeat="hour in forecast.list | limitTo : 12">
                         <div class="time" ng-bind="hour.dt_txt | getHour"></div>
                         <weather-icon icon="hour.weather[0].icon"></weather-icon>
-                        <div class="temp">{{hour.main.temp | tempInt | number:1}}&deg; C</div>
+                        <div class="temp">{{hour.main.temp | tempInt}}&deg; C</div>
                       </div>
                     </div>
                  </ion-scroll>
