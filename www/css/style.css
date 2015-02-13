@@ -77,10 +77,10 @@ input.ion-google-place[readonly]{
 }
 
 
-/*body {
-  text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+body {
+/*   text-shadow: 1px 1px 0px rgba(0,0,0,0.5); */
   background-color: black;
-}*/
+}
 #wrapper {
   background-color: black;
 }
@@ -238,7 +238,7 @@ h1,h2,h3,h4,h5 {
   text-align: left;
 }
 .weather-box .col:last-child {
-  text-align: right;
+/*   text-align: right; */
 }
 
 .weather-box span {
@@ -312,4 +312,78 @@ h1,h2,h3,h4,h5 {
 
 .daily-forecast-text {
   font-size:16px;
+}
+
+.error-message-display {
+ /* margin: 0 auto; */
+  text-align: center;
+  position: relative;
+  margin-top: 44px;
+}
+
+/* ion-item background change */
+.my-menu {
+background-color: #3f4041;
+}
+
+.my-menu .item, .my-menu .item-content, .my-menu .item-complex{
+background-color: rgba(0,0,0,0.2);
+color: #FFFFFF;
+}
+
+.my-menu .item {
+/* border-color: #ddd; */
+/* background-color: #fff; */
+color: #444;
+position: relative;
+z-index: 2;
+display: block;
+margin: -1px;
+padding: 0;
+border-width: 0px; 
+border-style: hidden;
+font-size: 16px;
+}
+
+/* black over lay */
+
+.black-box {
+  background-color: rgba(0,0,0,0.2);
+  padding: 9px;
+  margin: 10px 0px;
+  color: rgba(255,255,255,0.9);
+}
+
+.black-box .title {
+  color: rgba(255,255,255,0.9);
+  font-weight: normal;
+  margin: 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #fff;
+}
+
+
+.black-box .row {
+  border-bottom: 1px dotted rgba(255,255,255,0.3);
+  margin: 0;
+  padding: 0;
+}
+.black-box .col {
+  text-align: center;
+}
+.black-box .col:first-child {
+  text-align: left;
+}
+.black-box .col:last-child {
+/*   text-align: right; */
+}
+
+.black-box span {
+  vertical-align: middle;
+}
+
+.black-box .icon {
+  font-size: 18px;
+  line-height: 24px;
+  vertical-align: middle;
 }

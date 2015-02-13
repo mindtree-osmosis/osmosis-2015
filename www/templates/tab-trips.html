@@ -1,16 +1,26 @@
-<ion-view view-title="Trips">
-  <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/trips/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
+<ion-view view-title="Hotels">
+   <div class="bar bar-subheader" ng-show="showplacesinput">
+    <ion-google-place placeholder="Enter a Location" ng-model="search.location" ng-change="changeLocation(search.location)"/>
+  </div>
+  <ion-content class="home-wrapper card-bg-blur">
+<!--     <div class="row daily-forecast-text" ng-repeat="restaurant in restaurants">
+            <h2>{{restaurant.name}}</h2>
+            <div class="col"><weather-icon icon="day.weather[0].icon"></weather-icon></div>
+            <div class="col">
+              <span class="temp-high">{{day.temp.max | tempInt}}&deg;</span>
+              <span class="temp-low">{{day.temp.min | tempInt}}&deg;</span>
+            </div>
+          </div> -->
+    <ion-list class="my-menu" ng-hide="showplacesinput">
+      <ion-item class="item item-icon-right" ng-repeat="restaurant in restaurants" type="item-text-wrap" href="#/tab/trips/{{restaurant.place_id}}">
+        <h2>{{restaurant.name}}</h2>
+        <i class="icon ion-ios7-arrow-right icon-accessory"></i>
 
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+<!--         <ion-option-button class="button-assertive" ng-click="remove(chat)">
           Delete
-        </ion-option-button>
+        </ion-option-button> -->
       </ion-item>
     </ion-list>
+    <p class="error-message-display" ng-show="showplacesinput"> Search for a Destination to get more results </p>
   </ion-content>
 </ion-view>

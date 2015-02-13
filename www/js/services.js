@@ -127,12 +127,13 @@ angular.module('starter.services', ['restangular'])
 .factory('PlacesService',function(Restangular,$http,$q){
     console.log('in Places service');
     var locationInfo;
-  var types ='art_gallery|museum|amusement_park|zoo|aquarium|bowling_alley|casino|park' ;
+  var types;
   var apiKey = 'AIzaSyA8m0_8rTurwIZlyvrbrWVfxeJLV1tbUQ4';
   var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
   var location;
    return{
      getNearByLatnLong: function(lat,long) {
+       types ='art_gallery|museum|amusement_park|zoo|aquarium|bowling_alley|casino|park' ;
        location = lat+','+long;
                 locationInfo =  $http({
                         method: "get",
@@ -148,19 +149,45 @@ angular.module('starter.services', ['restangular'])
                     return( locationInfo.then( handleSuccess, handleError ) );
             },
      getFoodByLatnLong: function(lat,long) {
+       types ='food|restaurant|cafe|bar|bakery|lodging|meal_delivery|meal_takeaway|night_club' ;
+        location = lat+','+long;
                 locationInfo =  $http({
                         method: "get",
-                        url: "http://api.openweathermap.org/data/2.5/forecast/daily",
+                       url: url,
                         params: {
-                            lat: lat,
-                            lon: long,
-                          cnt: 10,
-                          mode:'json'
+                            location: location,
+                            type: types,
+                          radius:'10000',
+                             key: apiKey
                         }
                     });
 
                     return( locationInfo.then( handleSuccess, handleError ) );
+            },
+     getHotelDetails: function(id) {
+                locationInfo =  $http({
+                  method: "get",
+                  url: "https://maps.googleapis.com/maps/api/place/details/json",
+                  params: {
+                     key: apiKey,
+                    placeid: id
+                   
+                  }
+                });
+                    return( locationInfo.then( handleSuccess, handleError ) );
+            },
+     getHotelPhotos: function(id) {
+                locationInfo =  $http({
+                  method: "get",
+                  url: url,
+                  params: {
+                    placeid: id,
+                    key: apiKey
+                  }
+                });
+                    return( locationInfo.then( handleSuccess, handleError ) );
             }
+     
     }
 
     })

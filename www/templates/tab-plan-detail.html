@@ -1,9 +1,12 @@
 <ion-view view-title="Plan Detail">
 
   <ion-content class="padding home-wrapper card-bg-blur">
-    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+    <div id="map_canvas">
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="false" options="options">
+        <ui-gmap-markers coords="'self'" icon="'markers.icon'" models="markers" >
+        </ui-gmap-markers>
     </ui-gmap-google-map>
-
+    </div>
     <div class="text-backdrop">
       <div class="card-input">
         <div class="weather-content">
