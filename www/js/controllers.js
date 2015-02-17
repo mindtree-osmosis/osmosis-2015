@@ -56,9 +56,15 @@ angular.module('starter.controllers', ['restangular','uiGmapgoogle-maps'])
 
 .controller('TripsCtrl', function($scope, PlanService,PlacesService, $timeout) {
   $scope.restaurants = {};
+  var data; 
   $scope.getHotels = function(){
-    data = JSON.parse(PlanService.getSearchData());
-    if(data !== null && data !== 'undefined'){
+    data = PlanService.getSearchData();
+    if(typeof(data) === "undefined"){
+      data = null;
+    }else{
+      data = JSON.parse(data);
+    }
+    if(data !== null){    
       $scope.showplacesinput = false;
       $scope.lat = data.location.geometry.location.k;
       $scope.long = data.location.geometry.location.D;
@@ -68,25 +74,48 @@ angular.module('starter.controllers', ['restangular','uiGmapgoogle-maps'])
         console.log( $scope.restaurants);
       });
     }else{
+      console.log("in else part")
        $scope.showplacesinput = true;
     }
   };
   
   
   $scope.changeLocation = function(loc){
-    PlanService.setSearchData(search);
+    var dat = {"location":loc};
+    console.log(dat);
+    PlanService.setSearchData(dat);
     $scope.getHotels();
   }
   $scope.getHotels();
 })
 
-.controller('TripDetailCtrl', function($scope, $stateParams, PlacesService) {
+.controller('TripDetailCtrl', function($scope, $stateParams, PlacesService,$timeout) {
   $scope.hotel={};
-  console.log($stateParams.tripId);
+  $scope.photo_references = {};
+  $scope.photoupdates = [];
+  $scope.photos = [];
+  
+  
   PlacesService.getHotelDetails($stateParams.tripId).then(function(hotelData){
     $scope.hotel = hotelData.result;
+    $scope.photo_references = hotelData.result.photos;
     console.log($scope.hotel);
+//     angular.forEach($scope.photo_references, function(value, key) {
+//       var pic= $scope.photo_references.getUrl({'maxWidth': 100, 'maxHeight': 100});
+//       console.log(pic)
+//       PlacesService.getHotelPhotos(value.photo_reference).then(function(photo){
+//         $scope.photoupdates.push(photo);
+//       })
+//     });
   });
+  
+//   $scope.$watch('photoupdates',function(photos){
+//     $timeout(function () {
+//       $scope.photos = $scope.photoupdates;
+//       //console.log($scope.photos);
+//     },500);
+//   });
+  
   
 })
 

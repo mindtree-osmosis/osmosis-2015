@@ -58,6 +58,8 @@ angular.module('starter.services', ['restangular'])
       if(localStorage.getItem("searchData")!==null){
         data = localStorage.getItem("searchData");
         return data;
+      }else{
+        data="no data";
       }
     },
     setSearchData: function(data){
@@ -176,12 +178,12 @@ angular.module('starter.services', ['restangular'])
                 });
                     return( locationInfo.then( handleSuccess, handleError ) );
             },
-     getHotelPhotos: function(id) {
+     getHotelPhotos: function(ref) {
                 locationInfo =  $http({
                   method: "get",
-                  url: url,
+                  url: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400",
                   params: {
-                    placeid: id,
+                    photoreference: ref,
                     key: apiKey
                   }
                 });
@@ -238,7 +240,7 @@ angular.module('starter.services', ['restangular'])
 });
 
 function handleSuccess( response ) {
-
+                    
                     return( response.data );
 
                 }
