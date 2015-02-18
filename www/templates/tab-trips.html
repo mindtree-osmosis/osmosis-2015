@@ -3,6 +3,10 @@
     <ion-google-place placeholder="Enter a Location" ng-model="search.location" ng-change="changeLocation(search.location)"/>
   </div>
   <ion-content class="home-wrapper card-bg-blur">
+    <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
 <!--     <div class="row daily-forecast-text" ng-repeat="restaurant in restaurants">
             <h2>{{restaurant.name}}</h2>
             <div class="col"><weather-icon icon="day.weather[0].icon"></weather-icon></div>

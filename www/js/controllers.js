@@ -10,7 +10,9 @@ angular.module('starter.controllers', ['restangular','uiGmapgoogle-maps'])
 })
 
 .controller('PlanDetailCtrl', function($scope,PlanService,WeatherService,PlacesService, $timeout) {
-  data = JSON.parse(PlanService.getSearchData());
+  var data;
+  $scope.getWeatherAndPlaces = function() {
+    data = JSON.parse(PlanService.getSearchData());
   $scope.lat = data.location.geometry.location.k;
   $scope.long = data.location.geometry.location.D;
   $scope.current = {};
@@ -52,6 +54,15 @@ angular.module('starter.controllers', ['restangular','uiGmapgoogle-maps'])
       }
     });
    });
+  
+  };
+  
+  $scope.getWeatherAndPlaces();
+  
+   $scope.doRefresh = function () {
+    $scope.getWeatherAndPlaces();
+    $scope.$broadcast('scroll.refreshComplete');
+  };
 })
 
 .controller('TripsCtrl', function($scope, PlanService,PlacesService, $timeout) {
@@ -87,6 +98,11 @@ angular.module('starter.controllers', ['restangular','uiGmapgoogle-maps'])
     $scope.getHotels();
   }
   $scope.getHotels();
+  
+  $scope.doRefresh = function () {
+    $scope.getHotels();
+    $scope.$broadcast('scroll.refreshComplete');
+  };
 })
 
 .controller('TripDetailCtrl', function($scope, $stateParams, PlacesService,$timeout) {

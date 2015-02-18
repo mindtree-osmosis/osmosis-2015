@@ -206,4 +206,22 @@ angular.module('starter.directives', [])
       }
     }
   }
+})
+           
+.directive('starRating', function() {
+  return {
+    restrict: 'E',
+    template: '<i class="icon ion-star"></i>',
+    replace: true,
+    scope: '=',
+    link: function(scope, element, attrs) {
+     attrs.$observe('rating', function(value) {
+    if (value) {
+      console.log(attrs.rating)
+    }
+  });
+        
+     
+    }
+  }
 });
