@@ -1,0 +1,15 @@
+<ion-view view-title="Travel Checklist">
+  	<ion-content>
+	  	<div class="item item-divider">
+	    	20 Questions to consider before you travel.
+	  	</div>
+	  	<ul class="list">
+	 		<li class="item item-checkbox" ng-repeat="item in checklistItems">
+			    <label class="checkbox">
+			       <input type="checkbox" ng-model="item.isChecked">
+			    </label>
+			    <label class='wrapword list-item-title'>{{item.name}}</label>
+	  		</li>
+		</ul>
+	</ion-content>
+</ion-view>

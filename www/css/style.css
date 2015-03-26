@@ -1,7 +1,11 @@
 /* Empty. Add your own CSS if you like */
 body{
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 200;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 300;
+}
+
+.bar.bar-dark .title {
+  color: #ecac04;
 }
 .text-backdrop{
   text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
@@ -9,28 +13,68 @@ body{
 .spacer-lg {
 border: 1px solid #eee;
 }
+.spacer-dot {
+border-bottom: 1px dotted #00a9ce;
+width:90%;
+margin: 0px 10px;
+}
+.city-title{
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 300;
+  font-size:32px;
+  color:#325655;
+}
 .card-title {
   color: #000;
   font-size: 24px;
   text-align: center;
 }
 .card-bg {
-  background:transparent url('../img/beach.jpg') no-repeat center center;
+  background:transparent url('../img/search-bg.png') no-repeat center center;
   background-size: cover;
 }
 .card-bg-blur {
   background:transparent url('../img/beach-blur.jpg') no-repeat center center;
   background-size: cover;
 }
-.card-wrapper {
-  margin: 80px 0px;
+.Aligner {
+  display: flex;
+  align-items: center;
+  height: 41em; /* 1 */
+  justify-content: center;
+}
+@supports not (-ms-flex: 1) {
+  .Aligner {
+    height: auto; /* 2 */
+    min-height: 41em; /* 2 */
+  }
+}
+
+.Aligner-item {
+  flex: 1;
+}
+
+.Aligner-item--top {
+  align-self: flex-start;
+}
+
+.Aligner-item--bottom {
+  align-self: flex-end;
+}
+
+.Aligner-item--fixed {
+  flex: none;
+  max-width: 50%;
+}
+.Aligner-item > .item.item-input {
+    border-radius: 5px;
 }
 
 .home-wrapper{
   /*margin-top:20px;*/
 }
 .angular-google-map-container {
-  height: 220px;
+  height: 100vh;
 }
 .ion-google-place-container{
     position: fixed;
@@ -60,14 +104,14 @@ input.ion-google-place[readonly]{
 }
 
 .weather-title{
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 200;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 300;
   font-size:32px;
   color:#fff;
 }
 .weather-deg{
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 200;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 300;
   font-size:48px;
   color:#fff;
 }
@@ -77,10 +121,7 @@ input.ion-google-place[readonly]{
 }
 
 
-body {
-/*   text-shadow: 1px 1px 0px rgba(0,0,0,0.5); */
-  background-color: black;
-}
+
 #wrapper {
   background-color: black;
 }
@@ -124,7 +165,7 @@ body {
 
 h1,h2,h3,h4,h5 {
   color: #fff;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 #main-content {
@@ -180,12 +221,21 @@ h1,h2,h3,h4,h5 {
  * Current weather
  */
 
+.weather-text{
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 300;
+  font-size:36px;
+  color: #325655;
+}
 #current-weather {
-  height: 180px;
+  height: 80px;
   box-sizing: content-box;
+  color: #325655;
+  background: #deebed;
+  margin: 0px -10px;
 }
 #current-weather > * {
-  color: #fff;
+  color: #325655;
 }
 #current-weather .current-temp {
   font-size: 100px;
@@ -195,39 +245,51 @@ h1,h2,h3,h4,h5 {
   line-height: 80px;
 }
 
+.ion-ios7-sunny-outline {
+  color: #ecac04;
+}
 
 #current-icon {
-  font-size: 42px;
+  font-size: 80px;
   vertical-align: middle;
   margin-right: 5px;
 }
 
-#temp-hi, #temp-lo { display: inline-block; }
+#temp-hi, #temp-lo {
+  display: inline-block;
+  color: #325655;
+  font-size: 10px;
+ }
 #temp-lo {
   margin-left: 10px;
+}
+
+#current-weather h1, .h1, h2, .h2, h3, .h3 {
+margin-top: -15px;
+margin-bottom: 10px;
 }
 
 /**
  * Forecast and details
  */
 .weather-box {
-  background-color: rgba(0,0,0,0.2);
-  padding: 9px;
-  margin: 10px 0px;
-  color: rgba(255,255,255,0.9);
+  background-color: #deebed;
+  color: #325655;
 }
 
 .weather-box .title {
-  color: rgba(255,255,255,0.9);
-  font-weight: normal;
+  color: #325655;
+  font-family: "Ubuntu" ,Sans-serif;
+  font-weight: 400;
   margin: 0;
   padding-bottom: 5px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #325655;
+  text-align:left;
 }
 
 
 .weather-box .row {
-  border-bottom: 1px dotted rgba(255,255,255,0.3);
+  border-bottom: 1px dotted rgba(50, 86, 85, 0.3);
   margin: 0;
   padding: 0;
 }
@@ -272,13 +334,14 @@ h1,h2,h3,h4,h5 {
   margin: 10px 0px;
 }
 #hourly-forecast {
-  width: 640px;
+  width: 1990px;
   height: 80px;
 }
 .hourly-hour {
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 20px;
   text-align: center;
+  width : 40px;
 }
 
 #forecast .credit {
@@ -292,6 +355,11 @@ h1,h2,h3,h4,h5 {
 .capitalize {
   text-transform: capitalize;
 }
+
+/*
+ion-scroll[direction=y] {
+  height: calc(100vh - 33px - 33px - 90px - 15px);
+}*/
 
 /**
  * Settings modal
@@ -340,7 +408,7 @@ z-index: 2;
 display: block;
 margin: -1px;
 padding: 0;
-border-width: 0px; 
+border-width: 0px;
 border-style: hidden;
 font-size: 16px;
 }
@@ -390,6 +458,388 @@ font-size: 16px;
 
 /** ratings  **/
 
+ul.rating li {
+  display: inline;
+  border: 0px;
+  background: none;
+  padding: 0px 3px;
+}
+ul.rating li i {
+  font-size: 16px;
+  color: #ecac04;
+}
 
 
 /** ratings end **/
+
+.blue-bg{
+  background:#deebed;
+}
+
+.add-top{
+	top : 125px !important;
+}
+
+.white-bg{
+  background: #ffffff;
+}
+
+.drawer-expand{
+    height:680px;
+    overflow:hidden;
+    -webkit-animation: expand 3s;
+}
+
+@-webkit-keyframes expand{
+    0%{height:0px}
+    100%{height:680px}
+}
+
+.drawer-collapses{
+    height:0px;
+    overflow:hidden;
+    -webkit-animation: collapses 1s;
+}
+
+@-webkit-keyframes collapses{
+    0%{height:680px}
+    100%{height:0px}
+}
+
+.map-canvas, #googleMap {
+    width: 380px;
+    height: 380px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #4679BD;
+}
+
+
+.weather-drag-icon{
+  float: right;
+  font-size: 10px;
+}
+
+.weather-drag-icon > .icon {
+  font-size: 16px;
+}
+
+.pull-right{
+  float : right;
+}
+
+.pull-left{
+  float: left;
+}
+
+.list-item-title{
+  color: #00a9ce;
+}
+
+.map-title{
+  font-size:1.6em;
+  text-align:left;
+}
+.icon-yellow{
+  color: #ecac04;
+}
+.places-map{
+  shape-outside: url(../img/map.png);
+  shape-image-threshold: 0.3;
+  float: left;
+  height: 180px;
+  padding: 0px 0px 0px 10px;
+}
+
+.col-40 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 40%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 40%;
+  -ms-flex: 0 0 40%;
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+
+.swap-btn{
+	margin-top: 25px;
+	min-width: 30px;
+}
+
+.wrapword{
+	white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+	white-space: -pre-wrap;      /* Opera 4-6 */
+	white-space: -o-pre-wrap;    /* Opera 7 */
+	white-space: pre-wrap;       /* css-3 */
+	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+	white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+	word-break: break-all;
+	white-space: normal;
+}
+
+.more-items{
+  font-size:1.5em;
+  text-align:left;
+}
+
+.marginTop-20{
+	margin-top : 20% !important;
+}
+
+.listitem-gap{
+	margin-top: 8px;
+}
+
+.padding-6{
+	padding : 6px;
+}
+
+.center {
+	text-align : center;
+}
+
+.item-padding{
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+
+.cc-dropdown{
+	height : 32px;
+}
+
+input{
+    background-color: transparent;
+    cursor: text;
+}
+
+.action-sheet .button {
+	color: #00a9ce;
+}
+
+/* -- Accordian starts -- */
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+	background: #ecac04;
+	border-color: #ecac04;
+}
+
+.settings-font{
+	font-family: Ubuntu, sans-serif;
+	font-size: 20px !important;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 300;
+	color: #00a9ce;
+  	text-align:left;
+}
+
+.getit-btn{
+	min-height: 30px;
+	line-height: 30px;
+}
+
+.country-font{
+	font-size: 0.9em;
+	font-weight: 400;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.currency-font{
+	margin-top: 15px;
+	font-size: 3em;
+	margin-bottom: 15px;
+	color: #00a9ce;
+}
+
+.currency-code-btn{
+	background-color: #00a9ce;
+	border: #00a9ce;
+	border-radius: 5px;
+}
+
+.text-right{
+	text-align : right;
+}
+
+.offer-wrapper{
+  float:left; /* important */
+  position:relative;
+}
+
+.offer-image{
+  height:180px;
+  width:100%;
+
+}
+
+.offer-caption{
+    position:absolute; /* absolute position (so we can position it where we want)*/
+    bottom:0px; /* position will be on bottom */
+    left:0px;
+    width:100%;
+    /* styling bellow */
+    background-color:#444;
+    font-family: 'Ubuntu',Sans-serif;
+    font-size:15px;
+    opacity:0.9;
+}
+
+p.description{
+    padding:10px;
+    margin:0px;
+    color:#ecac04;
+}
+
+.selected-list{
+	background-color: #ecac04;
+}
+/* -- Accordian ends -- */
+
+#context {
+  text-align:justify;
+}
+
+.hidebraces{
+  display:none;
+}
+
+.hideref{
+  visibility:hidden;
+}
+
+.padding5{
+	padding : 5px;
+}
+
+.padding-left0{
+	padding-left : 0px !important;
+}
+
+.wishlist-checkbox{
+	border : none;
+	padding-top : 0px;
+	padding-bottom : 0px;
+	padding-right : 0px;
+  	font-size: 0.9em !important;
+    text-align: left;
+    font-weight: 400;
+}
+
+.wishlist-toggle{
+	padding-left: 33px;
+	width:100px !important;
+	padding-top: 5px;
+}
+
+.itenerary-toggle {
+  padding-left: 8px;
+  width: 100px !important;
+  padding-top: 5px;
+}
+
+.toggle .rthandle {
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  position: absolute;
+  display: block;
+  width: 28px;
+  height: 28px;
+  border-radius: 28px;
+  background-color: #fff;
+  top: 7px;
+  left: 75px;
+}
+
+.text-center{
+	text-align : center;
+}
+
+swipe-card {
+  display: none;
+  position: fixed;
+  -webkit-transform: scale(1,1);
+  margin-left : 10%;
+  margin-top : 20%;
+  width: 250px;
+  height: 300px;
+  box-sizing: border-box;
+  background-color: rgb(255,255,255);
+  border-radius: 4px;
+  overflow: hidden;
+  -webkit-animation-fill-mode: forwards;
+  line-height: 300px;
+  word-wrap: break-word;
+}
+
+
+swipe-card .title {
+  height: 40px;
+  padding: 5px;
+  line-height: 30px;
+  color: #444;
+}
+swipe-card .image {
+  overflow: hidden;
+  max-height: 210px;
+}
+swipe-card .button-bar {
+
+  margin-top: 180px;
+}
+swipe-card .button {
+  border: none;
+  bottom: 0px;
+}
+swipe-card .image img {
+  width: 100%;
+  border-radius: 0px 0px 4px 4px;
+}
+.swipe-content{
+  max-height:210px;
+}
+
+h3.popup-title {
+  color: #000;
+}
+
+.advisory-text{
+  font-family: 'Archivo Narrow', Arial, serif;
+  font-weight: 400;
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+  vertical-align: middle;
+  padding-top: 5px;
+}
+.advisory-yellow{
+  background: #ecac04;
+  min-height: 30px;
+}
+
+.advisory-green{
+  background: lightgreen;
+  min-height: 30px;
+}
+
+.advisory-red{
+  background: orangered;
+  min-height: 30px;
+}

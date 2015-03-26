@@ -1,0 +1,24 @@
+<ion-view view-title="Settings">
+  	<ion-content>
+  		<div class="list">
+	  		<div class="item settings-font">What type of Traveller are you?
+				<div class="list list-inset">
+				  	<label class="item item-radio" ng-repeat="traveller in travellerList">
+					    <input type="radio" name="group">
+					    <div class="item-content">
+					      	{{traveller.type}}
+					    </div>
+					    <i class="radio-icon ion-checkmark"></i>
+				  	</label>
+				</div>
+			</div>
+			<div class="item padding-6">
+				<div class="row">
+					<span class="col col-80 settings-font">Language</span>
+					<span class="col col-20">English</span>
+				</div>
+			</div>
+			<div class="item settings-font" ng-click='show()'>Feedback and Support</div>
+		</div>
+	</ion-content>
+</ion-view>

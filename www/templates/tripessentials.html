@@ -1,0 +1,17 @@
+<ion-view view-title="Trip Essentials">
+  	<ion-content>
+		<ul class="list">
+	 		<li class="item" ng-repeat="item in travelEssentialsList">
+	 			<div class='map-title list-item-title'>{{item.name}}</div>
+	 			<div class='row'>
+		 			<div class='col col-80'>
+			      		<p class='listitem-gap'>{{item.description}}</p>
+			      	</div>
+			      	<div class='col col-80'>
+					    <button class="button button-positive getit-btn">Get it</button>
+			      	</div>
+		      	</div>
+	  		</li>
+		</ul>			
+	</ion-content>
+</ion-view>

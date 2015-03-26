@@ -1,0 +1,28 @@
+<div id="current-weather">
+  <div class="row text-center">
+    <div class="col">
+      <h5>
+        <span id="temp-hi"> Actual</span>
+      </h5>
+      <h1 class="text-center"><span ng-bind="currentTemp"></span>&deg; C</h1>
+    </div>
+    <div class="col">
+  <h1><weather-icon icon="current.weather[0].icon" id="current-icon"></weather-icon> </h1>
+    </div>
+    <div class="col">
+       <h5>
+        <span id="temp-hi"> Humidity</span>
+      </h5>
+      <h1 class=""><span ng-bind="humidity"></span>&#37; </h1>
+    </div>
+   
+</div>
+   <div class="spacer-dot"></div>
+  <div class="weather-title">
+       <p class="text-center">{{cityname}}</p>
+<!--     <h5>
+    <span id="temp-hi"><i class="icon ion-arrow-up-c"></i> <span ng-bind="highTemp"></span>&deg; C</span>
+    <span id="temp-lo"><i class="icon ion-arrow-down-c"></i> <span ng-bind="lowTemp"></span>&deg; C</span>
+  </h5> -->
+  </div>
+</div>

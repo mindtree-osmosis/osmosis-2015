@@ -68,6 +68,31 @@ angular.module('starter.services', ['restangular'])
   }
 })
 
+.factory('CurrencyConverterService', function($http) {
+	// Might use a resource here that returns a JSON array
+	return {
+
+		getCurrentCountry: function(){
+	    	var ipInfo =  $http({
+	            method: "get",
+	            url: 'http://ipinfo.io/?callback='
+	        });
+
+	    	return( ipInfo.then( handleSuccess, handleError ) );
+		},
+
+	    convertCurrency : function(fromToCountry){
+	    	var currencyInfo = $http({
+	    		method : 'get',
+	    		url : 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22' +
+	    					fromToCountry + '%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback='
+	    	});
+
+	    	return( currencyInfo.then( handleSuccess, handleError ) );
+	    }
+	}
+})
+
 .factory('WeatherService',function(Restangular,$http,$q){
     console.log('in CityList service');
     var weatherInfo;
@@ -173,7 +198,7 @@ angular.module('starter.services', ['restangular'])
                   params: {
                      key: apiKey,
                     placeid: id
-                   
+
                   }
                 });
                     return( locationInfo.then( handleSuccess, handleError ) );
@@ -189,10 +214,70 @@ angular.module('starter.services', ['restangular'])
                 });
                     return( locationInfo.then( handleSuccess, handleError ) );
             }
-     
+
     }
 
     })
+
+  .factory('WikiService',function(Restangular,$http,$q){
+        console.log('in Wiki service');
+        var locationInfo;
+      var types;
+      var url = 'http://en.wikipedia.org/w/api.php';
+      var location;
+       return{
+         getContext: function(section,title) {
+                    locationInfo =  $http({
+                            method: "get",
+                            url: url,
+                            params: {
+                                action: 'query',
+                                prop: 'revisions',
+                                rvprop:'content',
+                                rvsection: section, //history
+                                titles: title,
+                                format: 'json'
+                            }
+                        });
+
+                        return( locationInfo.then( handleSuccess, handleError ) );
+                }
+              };
+        })
+        
+.factory('CurrencyService', function() {
+  // Might use a resource here that returns a JSON array
+	var fromCountry = null;
+	var toCountry = null;
+	var amount = 1;
+	var populateFromCurrency = true;
+  return {
+    getFromCountry: function() {
+      return fromCountry;
+    },
+    setFromCountry: function(data){
+    	fromCountry = data;
+    },
+    getToCountry: function() {
+        return toCountry;
+    },
+    setToCountry: function(data){
+    	toCountry = data;
+    },
+    getAmount: function() {
+        return amount;
+    },
+    setAmount: function(amt){
+    	amount = amt;
+    },
+    getPopulateFromCurrency: function() {
+        return populateFromCurrency;
+    },
+    setPopulateFromCurrency : function(from){
+    	populateFromCurrency = from;
+    }
+  }
+})
 /**
  * A simple example service that returns some data.
  */
@@ -240,7 +325,7 @@ angular.module('starter.services', ['restangular'])
 });
 
 function handleSuccess( response ) {
-                    
+
                     return( response.data );
 
                 }

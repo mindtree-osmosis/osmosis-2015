@@ -1,0 +1,59 @@
+<ion-view view-title="Currency Converter"> 
+	<ion-content scroll="true">
+		<div class='row'>
+			<div class='col col-40'>
+				<div ng-click='showlist(1)'>
+					<div class='country-font' ng-bind-html="currency.fromCurrency.countryName"></div>
+					<div class='currency-font'>{{currency.fromCurrency.currencyCode}}</div>
+				</div>
+				<input type="number" ng-model="currency.amount" ng-blur="convertCurrency()" placeholder="Enter Amount">
+			</div>
+			<div class='col col-20'>
+				<button class='ion-arrow-swap button button-positive swap-btn
+				' ng-click='swap()'></button>				
+			</div ng-click='showlist(false)'>
+			<div class='col col-40' ng-click='showlist(0)'>
+				<div class='text-right'>
+					<div class='country-font' ng-bind-html="currency.toCurrency.countryName"></div>
+					<div class='currency-font'>{{currency.toCurrency.currencyCode}}</div>
+				</div>
+				<input class='text-right' ng-disabled='true' type="text" ng-model="currency.convertedAmount" placeholder="Converted Amount">
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		<!-- <div class="list list-inset">
+			<div class='row'>
+				<div class='col col-75'>
+		    		<input type="number" ng-model="currency.amount" ng-blur="convertCurrency()" placeholder="Enter Amount">
+		    	</div>
+		    	<div class='col col-25'>
+		    		<button class="button button-positive getit-btn" ng-click='convertCurrency()'>Convert</button>
+		    	</div>
+		  	</div>
+			<div class='item-padding'>
+		    	<select ng-model="currency.fromCurrency" class="cc-dropdown"
+		    		ng-options="country.displayName for country in currency.countries | orderBy:'countryName'"
+		    		ng-change="convertCurrency()">
+		  		</select>
+		  	</div>
+		  	<div class='item-padding'>
+		  		<input ng-disabled='true' type="text" ng-model="currency.convertedAmount" placeholder="Converted Amount">
+		  	</div>
+		  	<div class='item-padding'>
+		    	<select ng-model="currency.toCurrency" class="cc-dropdown"
+		    		ng-options="country.displayName for country in currency.countries | orderBy:'countryName'"
+		    		ng-change="convertCurrency()">
+		  		</select>
+		  	</div>
+		
+			<div ng-click="swap()" class='swap-btn'>		
+		  		<input class='swap-btn' type="image" src="img/swap.png"/>
+		 	</div>		 	
+		 </div> -->
+	</ion-content>
+</ion-view>

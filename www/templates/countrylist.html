@@ -1,0 +1,14 @@
+<ion-view view-title="Select Currency">
+   <div class="bar bar-subheader">
+  		<input ng-model="searchText" type="text" placeholder="Search">
+  </div>
+  <ion-content class='has-subheader' padding="false" scroll="true"  has-bouncing="false">
+    <ion-list>
+	  	<ion-item ng-repeat="country in currency.countries | filter : searchText" ng-click='onCountrySelect(country)'
+	  		ng-class='{"selected-list" : selectedCountry.countryName == country.countryName}'>
+	    	<button class='currency-code-btn'>{{country.currencyCode}}</button> 
+	    	<span class='padding-left' ng-bind-html="country.countryName"></span>
+	  	</ion-item>
+	</ion-list>
+  </ion-content>
+</ion-view>

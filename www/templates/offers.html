@@ -1,0 +1,18 @@
+<ion-view view-title="Offers and Deals">
+  	<ion-content>
+	  	<div class="list">
+	      <div class="item" ng-repeat='offer in offersList'>
+	        <div class="offer-wrapper">
+	        <img src="img/{{offer.image}}" class="offer-image"/>
+	        <div class="offer-caption">
+	         <p class="description">{{offer.title}}<br>
+	           {{offer.desc}}<br>
+	
+	           Coupon Code : {{offer.code}}<br>
+	           Validity : {{offer.validity}}</p>
+	         </div>
+	        </div>
+	      </div>
+	    </div>				
+	</ion-content>
+</ion-view>

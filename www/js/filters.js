@@ -27,22 +27,26 @@ angular.module('starter.filters', ['starter.services'])
 
 .filter('removeUnderscore', function() {
   return function(input) {
-    var type = input.split("_").join(" ");    
+    var type = input.split("_").join(" ");
     return type;
   };
 })
 
 .filter('getHour', function() {
   return function(input) {
-    var fcDate = input.split(" ")[1];
-    var hours = parseInt(fcDate.split(":")[0]);
-    if(hours < 12){
-      hours = hours + " AM";
-    }else if (hours === 12){
-      hours = (hours) + " PM";
-    }else {
-      hours = (hours -12) + " PM";
+    if(input != null){
+      var fcDate = input.split(" ")[1];
+      var hours = parseInt(fcDate.split(":")[0]);
+      if(hours < 12){
+        hours = hours + " AM";
+      }else if (hours === 12){
+        hours = (hours) + " PM";
+      }else {
+        hours = (hours -12) + " PM";
+      }
+      return hours;
     }
-    return hours;
+
+
   };
 });

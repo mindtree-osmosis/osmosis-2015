@@ -1,0 +1,52 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-dark">
+      <button class="button button-icon icon" ng-class="showIcon" ng-click="showMapList()"></button>
+      <h1 class="title">{{cityname}}</h1>
+      <button class="button button-clear button-energized" ng-click="closeModal()">close</button>
+    </ion-header-bar>
+    <ion-content>
+      <ion-slide-box on-slide-changed="slideHasChanged($index)" id="modal-slide-box">
+  <ion-slide>
+    <div data-tap-disabled="true">
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+      <ui-gmap-markers models="markers" coords="'self'" icon="'icon'">
+      </ui-gmap-markers>
+  </ui-gmap-markers>
+    </ui-gmap-google-map>
+  </div>
+  </ion-slide>
+  <ion-slide>
+    <div class="row">
+      <div class="col">
+
+        <p class="map-title list-item-title"><i class="icon ion-ios7-location icon-yellow"></i> &nbsp;Places to See </p>
+        <div ng-repeat="place in nearByLocationsList " class="padding-left">
+          <div class="spacer-dot"></div>
+          <br>
+          <p class="map-title list-item-title">{{place.name}} </p>
+          <p>{{place.vicinity}}</p>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+
+        <p class="map-title list-item-title"><i class="icon ion-ios7-wineglass icon-yellow"></i> &nbsp;Hotels &amp; Restaurants </p>
+        <div ng-repeat="restaurant in restaurants" class="padding-left">
+          <div class="spacer-dot"></div>
+          <br>
+          <p class="map-title list-item-title">{{restaurant.name}} </p>
+          <p ng-if="restaurant.rating"><rating ng-model="restaurant.rating" max="max"></rating></p>
+          <p>{{restaurant.vicinity}}</p>
+
+        </div>
+
+      </div>
+    </div>
+  </ion-slide>
+
+</ion-slide-box>
+
+    </ion-content>
+  </ion-modal-view>

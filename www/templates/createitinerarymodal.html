@@ -1,0 +1,24 @@
+<ion-modal-view>
+  <ion-header-bar class="bar bar-dark">
+    <h1 class="title">Itinerary</h1>
+    <button class="button button-clear button-energized" ng-click="closeModal()">close</button>
+  </ion-header-bar>
+  <ion-content>
+	<swipe-cards>
+      <swipe-card on-card-swipe="cardSwiped()" id="start-card">
+        Swipe down for a new card
+      </swipe-card>
+      <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)">
+        <div ng-controller="CardCtrl">
+          <div class="title">
+            {{card.title}}
+          </div>
+          <div class="button-bar">
+            <button class="button button-clear button-positive" ng-click="goAway()">Answer</button>
+            <button class="button button-clear button-positive" ng-click="goAway()">Decline</button>
+          </div>
+        </div>
+      </swipe-card>
+    </swipe-cards>
+  </ion-content>
+</ion-modal-view>

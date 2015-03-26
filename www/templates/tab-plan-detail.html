@@ -1,57 +1,90 @@
-<ion-view view-title="Plan Detail">
-  <ion-content class="padding home-wrapper card-bg-blur">
+<ion-view view-title="{{cityname}}">
+  <ion-header-bar class="bar-subheader blue-bg">
+    <current-weather></current-weather>
+  </ion-header-bar>
+  <ion-content  scroll="true" class="blue-bg add-top">
     <ion-refresher
     pulling-text="Pull to refresh..."
     on-refresh="doRefresh()">
   </ion-refresher>
-    <div id="map_canvas">
-    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="false" options="options">
-        <ui-gmap-markers coords="'self'" icon="'markers.icon'" models="markers" >
-        </ui-gmap-markers>
-    </ui-gmap-google-map>
-    </div>
-    <div class="text-backdrop">
-      <div class="card-input">
+
+      <div class="card-input padding">
         <div class="weather-content">
-          <current-weather></current-weather>
-          <div id="forecast" class="weather-box">
-            <h4 class="title">Forecast</h4>
-            <ion-scroll direction="x" id="forecast-scroll">
-                    <div id="hourly-forecast">
-                      <div class="hourly-hour" ng-repeat="hour in forecast.list | limitTo : 12">
-                        <div class="time" ng-bind="hour.dt_txt | getHour"></div>
-                        <weather-icon icon="hour.weather[0].icon"></weather-icon>
-                        <div class="temp">{{hour.main.temp | tempInt}}&deg; C</div>
-                      </div>
-                    </div>
-                 </ion-scroll>
-          <div class="row daily-forecast-text" ng-repeat="day in dailyForecast.list">
-            <div class="col"><span ng-bind="day.dt * 1000 | date:'EEEE'"></span></div>
-            <div class="col"><weather-icon icon="day.weather[0].icon"></weather-icon></div>
-            <div class="col">
-              <span class="temp-high">{{day.temp.max | tempInt}}&deg;</span>
-              <span class="temp-low">{{day.temp.min | tempInt}}&deg;</span>
-            </div>
-          </div>
-<!--   <div class="clearfix">
-    <div class="credit">
-      Powered by <a href="http://forecast.io" target="_blank">forecast.io</a>
-    </div>
-  </div> -->
-</div><!-- end of forecast -->
-              <div id="nearby" class="weather-box">
-            <h4 class="title">Places Nearby</h4>
-            <div class="row daily-forecast-text" ng-repeat="location in nearByLocationsList | limitTo:10">
-              <div class="col"><span>{{location.name}}</span></div>
-              <div class="col capitalize"><span>{{location.types[0] | removeUnderscore}}</span></div>
-            </div>
-</div><!-- end of nearby -->
+         <div id="forecast" class="weather-box" ng-class="classname">
+
+           <h4 class="title">Forecast  </h4>
+           <ion-scroll direction="x" id="forecast-scroll" style='height: 85px;'>
+                   <div id="hourly-forecast">
+                     <div class="hourly-hour" ng-repeat="hour in forecast.list">
+                       <div class="time" ng-bind="hour.dt_txt | getHour"></div>
+                       <weather-icon icon="hour.weather[0].icon"></weather-icon>
+                       <div class="temp">{{hour.main.temp | tempInt}}&deg; C</div>
+                     </div>
+                   </div>
+                </ion-scroll>
+           <div class="row daily-forecast-text" ng-repeat="day in dailyForecast.list">
+             <div class="col"><span ng-bind="day.dt * 1000 | date:'EEEE'"></span></div>
+             <div class="col"><weather-icon icon="day.weather[0].icon"></weather-icon></div>
+             <div class="col">
+               <span class="temp-high">{{day.temp.max | tempInt}}&deg;</span>
+               <span class="temp-low">{{day.temp.min | tempInt}}&deg;</span>
+             </div>
+           </div>
+         </div><!-- end of forecast -->
+
            </div>
       </div>
-    </div>
+      <div class="white-bg">
+        <div ng-class="advisory.type"><p ng-class="advisory.text">{{advisory.data}}</p></div>
+        <ion-slide-box does-continue="true">
+          <ion-slide>
+            <div class="row">
+              <div class="col">
+                <img src="img/map.png" class="places-map" ng-click="openModal()">
+                <p class="map-title list-item-title"><i class="icon ion-earth icon-yellow"></i> &nbsp;History </p>
+                  <p ng-bind-html="context" id="context"></p>
+                <div class="spacer-dot"></div>
+                <br>
+                <p class="map-title list-item-title"><i class="icon ion-map icon-yellow"></i> &nbsp;How to get here </p>
+                <p ng-bind-html="transportation" id="context"></p>
 
- <div class="padding">
-        <a href="#"  class="button button-full button-assertive">Book Now</a>
+              </div>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="row">
+              <div class="col">
+
+                <p class="map-title list-item-title"><i class="icon ion-ios7-location icon-yellow"></i> &nbsp;Places to See </p>
+                <div ng-repeat="place in nearByLocationsList" class="padding-left">
+                  <div class="spacer-dot"></div>
+                  <br>
+                  <p class="map-title list-item-title">{{place.name}} </p>
+                  <p>{{place.vicinity}}</p>
+                </div>
+
+              </div>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="row">
+              <div class="col">
+
+                <p class="map-title list-item-title"><i class="icon ion-ios7-wineglass icon-yellow"></i> &nbsp;Hotels &amp; Restaurants </p>
+                <div ng-repeat="restaurant in restaurants" class="padding-left">
+                  <div class="spacer-dot"></div>
+                  <br>
+                  <p class="map-title list-item-title">{{restaurant.name}} </p>
+                  <p ng-if="restaurant.rating"><rating ng-model="restaurant.rating" max="max"></rating></p>
+                  <p>{{restaurant.vicinity}}</p>
+
+                </div>
+
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slide-box>
+
       </div>
   </ion-content>
 </ion-view>

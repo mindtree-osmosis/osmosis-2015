@@ -4,28 +4,24 @@ Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
-
-
-  <!-- Dashboard Tab -->
-  <ion-tab title="Home" icon-off="ion-ios7-home-outline" icon-on="ion-ios7-home" href="#/tab/plan">
+  <!-- Search Tab -->
+  <ion-tab title="Search" icon-off="ion-ios7-search" icon-on="ion-ios7-search-strong" href="#/tab/plan">
     <ion-nav-view name="tab-plan"></ion-nav-view>
   </ion-tab>
 
-
-  <!-- Chats Tab -->
-  <ion-tab title="Hotels" icon-off="ion-ios7-wineglass-outline" icon-on="ion-ios7-wineglass" href="#/tab/trips">
-    <ion-nav-view name="tab-trips"></ion-nav-view>
-  </ion-tab>
-
-  <!-- Friends Tab -->
-  <ion-tab title="Info" icon-off="ion-ios7-information-outline" icon-on="ion-ios7-information" href="#/tab/info">
+  <!-- itinerary Tab -->
+  <ion-tab title="itinerary" icon-off="ion-ios7-paper-outline" icon-on="ion-ios7-paper" href="#/tab/info">
     <ion-nav-view name="tab-info"></ion-nav-view>
   </ion-tab>
+  
+   <!-- Flight Tab -->
+  <ion-tab title="Flight" icon-off="ion-ios7-paperplane-outline" icon-on="ion-ios7-paperplane" href="">
+    <ion-nav-view name="tab-flight"></ion-nav-view>
+  </ion-tab>
 
-
-  <!-- Account Tab -->
-  <ion-tab title="Convert" icon-off="ion-social-usd-outline" icon-on="ion-social-usd" href="#/tab/account">
-    <ion-nav-view name="tab-account"></ion-nav-view>
+  <!-- More Tab -->
+  <ion-tab title="More" icon-off="ion-ios7-more-outline" icon-on="ion-ios7-more" href="#/tab/more">
+    <ion-nav-view name="more"></ion-nav-view>
   </ion-tab>
 
 

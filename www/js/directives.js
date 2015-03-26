@@ -76,10 +76,11 @@ angular.module('starter.directives', [])
         $scope.$watch('current', function(current) {
 
            console.log("current "+current);
-         if(current) {
+         if(current && current.main) {
            $scope.highTemp = Math.floor(current.main.temp_max - 273.15);
            $scope.lowTemp = Math.floor(current.main.temp_min - 273.15);
            $scope.currentTemp = Math.floor(current.main.temp - 273.15);
+           $scope.humidity = current.main.humidity;
          }
        });
     };
@@ -207,7 +208,7 @@ angular.module('starter.directives', [])
     }
   }
 })
-           
+
 .directive('starRating', function() {
   return {
     restrict: 'E',
@@ -220,8 +221,8 @@ angular.module('starter.directives', [])
       console.log(attrs.rating)
     }
   });
-        
-     
+
+
     }
   }
 });

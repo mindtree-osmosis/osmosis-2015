@@ -1,10 +1,82 @@
-<ion-view view-title="Info">
+<style>
+	.slider-pager {
+		display:none;
+	}
+</style>
+
+<ion-view view-title="Itinerary" >
   <ion-content>
-    <ion-list>
-      <ion-item class="item-avatar" ng-repeat="friend in friends" type="item-text-wrap" href="#/tab/info/{{friend.id}}">
-        <img ng-src="{{friend.face}}">
-        <h2>{{friend.name}}</h2>
-      </ion-item>
-    </ion-list>
+	<div class="row">
+		<div class="map-title col col-66">{{pageTitle}}</div>
+		<div class="col col-33" ng-if='itinerary'>
+			<label class="toggle">
+	       		<input type="checkbox" ng-click="toggleWishlist()">
+		       	<div class="track wishlist-toggle positive">Wishlist
+		         	<div class="handle"></div>
+		       	</div>
+	     	</label>
+	     </div>
+
+	     <div class="col col-33" ng-if='!itinerary'>
+			<label class="toggle toggle-light">
+	       		<input type="checkbox" ng-click="toggleWishlist()" checked="true">
+		       	<div class="track itenerary-toggle positive">Itinerary
+		         	<div class="rthandle"></div>
+		       	</div>
+	     	</label>
+	     </div>
+	</div>
+	<div>
+		<ion-slide-box active-slide="slidestop($index)">
+		  <ion-slide>
+
+				<ion-list>
+				    <ion-item class="item item-icon-left"  ng-repeat='itinerary in itineraryDetails' href="#/tab/info/itinerary/{{itinerary.city}}">
+							<i class="icon ion-location icon-yellow"></i>
+							<span class="map-title list-item-title">
+								{{itinerary.city}}
+							</span>
+							<span class="item-note">
+								Starts {{itinerary.date}}
+    					</span>
+					 	<ion-option-button class="button-positive"
+                       ng-click="edit(itinerary)">
+      Edit
+    </ion-option-button>
+		<ion-option-button class="button-assertive"
+                       ng-click="itineraryDetails.splice($index, 1)">
+      Delete
+    </ion-option-button>
+					</ion-item>
+			</ion-list>
+				<div class="row">
+					<button class="col button button-positive" ng-click='addItinerary()'>
+					 Create New
+					</button>
+				</div>
+		  </ion-slide>
+		  <ion-slide>
+
+				<ion-list>
+						<ion-item  ng-repeat='wish in wishlist'>
+							<div class="item-checkbox">
+								<label class="checkbox">
+									<input type="checkbox">
+								</label>
+								<span>{{wish.city}}</span>
+							</div>
+							<ion-option-button class="button-positive" ng-click="edit(wish)"> Edit </ion-option-button>
+							<ion-option-button class="button-assertive" ng-click="wishlist.splice($index, 1)"> Delete </ion-option-button>
+						</ion-item>
+				</ion-list>
+				<div class="row">
+					<button class="col button button-positive" ng-click="showPopup()">
+					 	Add New
+					</button>
+				</div>
+
+		  </ion-slide>
+		</ion-slide-box>
+	</div>
   </ion-content>
 </ion-view>

@@ -1,0 +1,41 @@
+<ion-view title="Home">
+  <ion-content class="has-header ">
+    <div class="list list-inset">
+      <!-- <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" id="autocomplete" class="form-control" ng-autocomplete ng-model="result1">
+      </label> -->
+      <label class="item item-input">
+                           <input type="text" placeholder="Enter your home address, Apt# and ZIP" ng-model="user.address" googleplace="" class="ng-pristine ng-valid" autocomplete="off"><!-- googleplace -->
+                        </label>
+      <div>{{result1}}</div>
+    </div>
+
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+
+    <div class="card">
+      <div class="item item-text-wrap">
+
+
+        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+          <ion-slide>
+            <div class="box blue">
+              <h1 class="text-center">Weather</h1>
+
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="box yellow"><h1>YELLOW</h1></div>
+          </ion-slide>
+          <ion-slide>
+            <div class="box pink"><h1>PINK</h1></div>
+          </ion-slide>
+        </ion-slide-box>
+
+      </div>
+
+
+    </div><!-- /card -->
+
+  </ion-content>
+</ion-view>

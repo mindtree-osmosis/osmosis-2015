@@ -1,8 +1,19 @@
 <div id="current-weather">
-  <h5><weather-icon icon="current.weather[0].icon" id="current-icon"></weather-icon> {{current.weather[0].description}}</h5>
-  <h5>
-    <span id="temp-hi"><i class="icon ion-arrow-up-c"></i> <span ng-bind="highTemp"></span>&deg; C</span>
-    <span id="temp-lo"><i class="icon ion-arrow-down-c"></i> <span ng-bind="lowTemp"></span>&deg; C</span>
-  </h5>
-  <h1 class="current-temp"><span ng-bind="currentTemp"></span>&deg;</h1>
+  <div class="row text-center">
+    <div class="col">
+
+
+
+      <p> <span id="temp-hi"> Temperature</span> <h1 class="text-center weather-text"><span ng-bind="currentTemp"></span>&deg; C</h1> </p>
+    </div>
+    <div class="col">
+  <h1 ng-click="onDragDown()"><weather-icon icon="current.weather[0].icon" id="current-icon"></weather-icon> </h1>
+    </div>
+    <div class="col">
+      <p><span id="temp-hi">Humidity </span><h1 class="weather-text"><span ng-bind="humidity" ></span>&#37; </h1></p>
+    </div>
+
+</div>
+
+
 </div>
